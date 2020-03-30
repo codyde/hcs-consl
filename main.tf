@@ -30,3 +30,9 @@ resource "consul_intention" "api-allow" {
   destination_name = "pyapi-vm"
   action           = "allow"
 }
+
+resource "consul_intention" "db-allow" {
+  source_name      = "pyapi-vm"
+  destination_name = "db-vm"
+  action           = "allow"
+}
