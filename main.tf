@@ -7,8 +7,8 @@ provider "consul" {
 data "template_file" "init" {
   template = "${file("website.tmpl")}"
   vars = {
-    cardHeader = var.cardHeader
-    cardText = var.cardText
+    cardHeader = "HashiCorp Consul Service on Azure - VM <> VM Mesh Demo"
+    cardText = "Our application is designed to demonstrate connectivity between multiple tiers in a Service Mesh running with Consul"
   }
 }
 
