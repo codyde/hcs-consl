@@ -1,0 +1,4 @@
+*.tfstate
+.terraform
+tf-consul-vm/*
+terraform.tfvars.sample
