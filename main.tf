@@ -24,15 +24,3 @@ resource "consul_intention" "default-deny" {
   destination_name = "*"
   action           = "deny"
 }
-
-resource "consul_intention" "api-allow" {
-  source_name      = "nginx"
-  destination_name = "pyapi-vm"
-  action           = "allow"
-}
-
-resource "consul_intention" "db-allow" {
-  source_name      = "pyapi-vm"
-  destination_name = "db-vm"
-  action           = "allow"
-}
