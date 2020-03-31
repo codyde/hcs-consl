@@ -24,3 +24,9 @@ resource "consul_intention" "default-deny" {
   destination_name = "*"
   action           = "deny"
 }
+
+resource "consul_intention" "api-allow" {
+  source_name      = "frontend-vm"
+  destination_name = "pyapi-vm"
+  action           = "allow"
+}
