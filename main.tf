@@ -7,8 +7,8 @@ provider "consul" {
 data "template_file" "init" {
   template = "${file("website.tmpl")}"
   vars = {
-    cardHeader = ""
-    cardText = ""
+    cardHeader = "Consul on Azure Demo"
+    cardText = "This is a demo of HashiCorp Consul on Azure"
   }
 }
 
