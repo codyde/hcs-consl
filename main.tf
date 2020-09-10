@@ -24,22 +24,3 @@ resource "consul_config_entry" "frontend" {
     Protocol    = "http"
   })
 }
-
-resource "consul_config_entry" "ingress_gateway" {
-    name = "hcs-igw"
-    kind = "ingress-gateway"
-
-    config_json = jsonencode({
-        Listeners = [{
-            Port     = 8080
-            Protocol = "http"
-            Services = [
-     {
-       Name = "frontend"
-       Hosts = ["*"]
-     }
-   ]
-            
-        }]
-    })
-}
