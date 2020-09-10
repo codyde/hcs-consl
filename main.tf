@@ -6,7 +6,8 @@ provider "consul" {
 
 resource "consul_intention" "api-allow" {
   source_name      = "frontend"
-  datacenter       = var.consuldc
   destination_name = "pyapi"
   action           = "allow"
+  datacenter       = var.consuldc
+
 }
