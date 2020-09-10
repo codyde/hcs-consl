@@ -1,2 +1,2 @@
-cluster = "https://11ea6ac5-4e8c-c9e2-8f8b-0242ac11000a.consul.az.hashicorp.cloud:443"
-consuldc = "consulaz"
+cluster = "https://11eacd3b-b4aa-603f-aa36-0242ac11000a.consul.az.hashicorp.cloud"
+consuldc = "azurehcs"
