@@ -35,7 +35,7 @@ resource "consul_config_entry" "ingress_gateway" {
             Protocol = "http"
             Services = [
      {
-       Name = "frontend"
+       Name = resource.consul_config_entry.frontend.name
        Hosts = ["*"]
      }
    ]
