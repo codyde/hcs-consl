@@ -21,9 +21,6 @@ resource "consul_config_entry" "ingress_gateway" {
     kind = "ingress-gateway"
 
     config_json = jsonencode({
-        TLS = {
-            Enabled = true
-        }
         Listeners = [{
             Port     = 8080
             Protocol = "http"
