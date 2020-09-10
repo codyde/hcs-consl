@@ -7,3 +7,7 @@ variable "consuldc" {
     description = "variable for the Consul Cluster Datacenter"
     default = "dc01"
 }
+
+variable "token" {
+    description = "ACL token for HCS cluster"
+}
