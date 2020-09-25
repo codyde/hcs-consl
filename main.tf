@@ -4,6 +4,15 @@ provider "consul" {
   token      = var.token
 }
 
+resource "consul_namespace" "production" {
+  name        = "production"
+  description = "Production namespace"
+
+  meta = {
+    foo = "bar"
+  }
+}
+
 resource "consul_intention" "api-allow" {
   source_name      = "frontend"
   destination_name = "api"
