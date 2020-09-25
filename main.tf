@@ -13,17 +13,40 @@ resource "consul_namespace" "production" {
   }
 }
 
-resource "consul_service" "google" {
-  name    = "google"
+resource "consul_service" "hashi" {
+  name    = "hashi"
   node    = "${consul_node.compute.name}"
   port    = 80
-  tags    = ["tag0"]
+  tags    = ["hashi"]
 }
 
 resource "consul_node" "compute" {
-  name    = "compute-google"
-  address = "www.google.com"
+  name    = "compute-hashi"
+  address = "www.hashicorp.com"
 }
+
+check {
+    check_id                          = "service:HashiCorp"
+    name                              = "HashiCorp health check"
+    status                            = "passing"
+    http                              = "https://www.hashicorp.com"
+    tls_skip_verify                   = false
+    method                            = "GET"
+    interval                          = "5s"
+    timeout                           = "1s"
+    deregister_critical_service_after = "30s"
+
+    header {
+      name  = "foo"
+      value = ["test"]
+    }
+
+    header {
+      name  = "bar"
+      value = ["test"]
+    }
+  }
+
 resource "consul_intention" "api-allow" {
   source_name      = "frontend"
   destination_name = "api"
