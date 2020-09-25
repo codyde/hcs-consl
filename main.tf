@@ -13,6 +13,34 @@ resource "consul_namespace" "production" {
   }
 }
 
+resource "consul_service" "redis" {
+  name = "redis"
+  node = "redis"
+  port = 6379
+
+  check {
+    check_id                          = "service:redis1"
+    name                              = "Redis health check"
+    status                            = "passing"
+    http                              = "https://www.hashicorptest.com"
+    tls_skip_verify                   = false
+    method                            = "PUT"
+    interval                          = "5s"
+    timeout                           = "1s"
+    deregister_critical_service_after = "30s"
+
+    header {
+      name  = "foo"
+      value = ["test"]
+    }
+
+    header {
+      name  = "bar"
+      value = ["test"]
+    }
+  }
+}
+
 resource "consul_intention" "api-allow" {
   source_name      = "frontend"
   destination_name = "api"
