@@ -13,26 +13,6 @@ resource "consul_namespace" "production" {
   }
 }
 
-resource "consul_service" "hashi" {
-  name    = "hashi"
-  node    = "${consul_node.compute.name}"
-  port    = 80
-  tags    = ["hashi"]
-  check {
-    check_id                          = "service:HashiCorp"
-    name                              = "HashiCorp health check"
-    http                              = "http://charagdk.com"
-    method                            = "GET"
-    interval                          = "5s"
-    timeout                           = "1s"
-  }
-}
-
-resource "consul_node" "compute" {
-  name    = "compute-hashi"
-  address = "www.hashicorp.com"
-  }
-
 resource "consul_intention" "api-allow" {
   source_name      = "frontend"
   destination_name = "api"
