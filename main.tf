@@ -16,9 +16,25 @@ resource "consul_namespace" "production" {
 
 
 resource "consul_node" "compute" {
-  name    = "compute-hashi"
-  address = "www.hashicorp.com"
+  name    = "nas"
+  address = "192.168.1.112"
   }
+
+resource "consul_service" "nas" {
+  name    = "hashi"
+  node    = "${consul_node.compute.name}"
+  port    = 5000
+  tags    = ["hashi"]
+  check {
+    check_id                          = "service:HashiCorp"
+    name                              = "HashiCorp health check"
+    http                              = consul_node.compute.address
+    port                              = 5000
+    method                            = "GET"
+    interval                          = "5s"
+    timeout                           = "1s"
+  }
+}
 
 resource "consul_intention" "api-allow" {
   source_name      = "frontend"
