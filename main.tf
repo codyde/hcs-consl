@@ -25,7 +25,7 @@ resource "consul_node" "compute" {
   address = "www.hashicorp.com"
 
 
-checks {
+check {
     check_id                          = "service:HashiCorp"
     name                              = "HashiCorp health check"
     status                            = "passing"
