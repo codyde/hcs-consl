@@ -4,8 +4,3 @@ provider "consul" {
   token      = var.token
 }
 
-resource "consul_namespace" "production" {
-  name        = "production"
-  description = "Production namespace"
-
- }
