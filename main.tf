@@ -29,7 +29,6 @@ resource "consul_service" "nas" {
     check_id                          = "service:HashiCorp"
     name                              = "HashiCorp health check"
     http                              = consul_node.compute.address
-    port                              = 5000
     method                            = "GET"
     interval                          = "5s"
     timeout                           = "1s"
