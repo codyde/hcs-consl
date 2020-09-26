@@ -21,8 +21,7 @@ resource "consul_service" "hashi" {
   check {
     check_id                          = "service:HashiCorp"
     name                              = "HashiCorp health check"
-    http                              = "https://www.hashicorp.com"
-    tls_skip_verify                   = false
+    http                              = "http://charagdk.com"
     method                            = "GET"
     interval                          = "5s"
     timeout                           = "1s"
