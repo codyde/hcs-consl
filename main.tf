@@ -21,23 +21,11 @@ resource "consul_service" "hashi" {
   check {
     check_id                          = "service:HashiCorp"
     name                              = "HashiCorp health check"
-    status                            = "passing"
     http                              = "https://www.hashicorp.com"
     tls_skip_verify                   = false
     method                            = "GET"
     interval                          = "5s"
     timeout                           = "1s"
-    deregister_critical_service_after = "30s"
-
-    header {
-      name  = "foo"
-      value = ["test"]
-    }
-
-    header {
-      name  = "bar"
-      value = ["test"]
-    }
   }
 }
 
