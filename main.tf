@@ -18,14 +18,7 @@ resource "consul_service" "hashi" {
   node    = "${consul_node.compute.name}"
   port    = 80
   tags    = ["hashi"]
-}
-
-resource "consul_node" "compute" {
-  name    = "compute-hashi"
-  address = "www.hashicorp.com"
-
-
-check {
+  check {
     check_id                          = "service:HashiCorp"
     name                              = "HashiCorp health check"
     status                            = "passing"
@@ -46,6 +39,11 @@ check {
       value = ["test"]
     }
   }
+}
+
+resource "consul_node" "compute" {
+  name    = "compute-hashi"
+  address = "www.hashicorp.com"
   }
 
 resource "consul_intention" "api-allow" {
