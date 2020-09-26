@@ -23,7 +23,7 @@ resource "consul_service" "hashi" {
 resource "consul_node" "compute" {
   name    = "compute-hashi"
   address = "www.hashicorp.com"
-}
+
 
 checks {
     check_id                          = "service:HashiCorp"
@@ -45,6 +45,7 @@ checks {
       name  = "bar"
       value = ["test"]
     }
+  }
   }
 
 resource "consul_intention" "api-allow" {
