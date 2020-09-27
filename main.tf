@@ -17,13 +17,13 @@ resource "consul_intention" "db-allow" {
   }
 
 resource "consul_intention" "ig-fe-allow" {
-    source_name      = "consul-hcs-igw"
+    source_name      = "hcs-igw"
     destination_name = "frontend"
     action           = "allow"
   }
 
 resource "consul_intention" "ig-fe2-allow" {
-    source_name      = "consul-hcs-igw"
+    source_name      = "hcs-igw"
     destination_name = "frontend-v2"
     action           = "allow"
   }
