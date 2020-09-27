@@ -65,7 +65,7 @@ resource "consul_config_entry" "fe-splitter" {
 
 resource "consul_config_entry" "ingress" {
     kind = "ingress-gateway"
-    name = "ingress-gateway"
+    name = "hcs-igw"
 
     config_json = jsonencode({
       Listeners = [
