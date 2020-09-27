@@ -16,6 +16,18 @@ resource "consul_intention" "db-allow" {
     action           = "allow"
   }
 
+resource "consul_intention" "ig-fe-allow" {
+    source_name      = "consul-hcs-igw"
+    destination_name = "frontend"
+    action           = "allow"
+  }
+
+resource "consul_intention" "ig-fe2-allow" {
+    source_name      = "consul-hcs-igw"
+    destination_name = "frontend-v2"
+    action           = "allow"
+  }
+
 resource "consul_config_entry" "frontend" {
     name = "frontend"
     kind = "service-defaults"
