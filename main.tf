@@ -15,3 +15,21 @@ resource "consul_intention" "db-allow" {
     destination_name = "db"
     action           = "allow"
   }
+
+resource "consul_config_entry" "frontend" {
+    name = "frontend"
+    kind = "service-defaults"
+
+    config_json = jsonencode({
+      Protocol    = "http"
+    })
+  }
+
+resource "consul_config_entry" "frontend-v2" {
+      name = "frontend-v2"
+      kind = "service-defaults"
+
+      config_json = jsonencode({
+        Protocol    = "http"
+      })
+    }
