@@ -17,7 +17,7 @@ resource "consul_intention" "db-allow" {
   }
 
 resource "consul_intention" "fe-v2-allow" {
-    source_name      = "fronend-v2"
+    source_name      = "frontend-v2"
     destination_name = "api"
     action           = "allow"
   }
@@ -59,10 +59,10 @@ resource "consul_config_entry" "fe-splitter" {
     config_json = jsonencode({
       Splits = [
     {
-     Weight  = 100
+     Weight  = 0
     },
     {
-     Weight  = 0
+     Weight  = 100
       Service = "frontend-v2"
     }
   ]
