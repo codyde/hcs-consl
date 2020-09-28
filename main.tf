@@ -59,10 +59,10 @@ resource "consul_config_entry" "fe-splitter" {
     config_json = jsonencode({
       Splits = [
     {
-     Weight  = 0
+     Weight  = 100
     },
     {
-     Weight  = 100
+     Weight  = 0
       Service = "frontend-v2"
     }
   ]
