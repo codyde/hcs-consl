@@ -16,6 +16,12 @@ resource "consul_intention" "db-allow" {
     action           = "allow"
   }
 
+resource "consul_intention" "fe-v2-allow" {
+    source_name      = "fronend-v2"
+    destination_name = "api"
+    action           = "allow"
+  }
+
 resource "consul_intention" "ig-fe-allow" {
     source_name      = "hcs-igw"
     destination_name = "frontend"
