@@ -4,6 +4,33 @@ provider "consul" {
   token      = var.token
 }
 
+resource "consul_config_entry" "frontend-v2" {
+      name = "frontend-v2"
+      kind = "service-defaults"
+
+      config_json = jsonencode({
+        Protocol    = "http"
+      })
+    }
+
+resource "consul_config_entry" "fe-splitter" {
+    kind = "service-splitter"
+    name = consul_config_entry.frontend.name
+
+    config_json = jsonencode({
+      Splits = [
+    {
+     Weight  = 100
+    },
+    {
+     Weight  = 0
+      Service = "frontend-v2"
+    }
+  ]
+    })
+  }
+
+
 resource "consul_intention" "igw-allow" {
   source_name      = "ingress-gateway"
   destination_name = "frontend"
