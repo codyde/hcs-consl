@@ -4,6 +4,22 @@ provider "consul" {
   token      = var.token
 }
 
+resource "consul_service" "hcspgsql" {
+  name    = "hcpgsql"
+  node    = "${consul_node.hcspgsql.name}"
+  port    = 5432
+  tags    = ["external"]
+}
+
+resource "consul_node" "hcspgsql" {
+  name    = "postgres"
+  address = "13.66.226.202"
+  meta = {
+    "external-node" = "true"
+    "external-probe" = "true"
+    }
+}
+
 resource "consul_config_entry" "frontend-v2" {
       name = "frontend-v2"
       kind = "service-defaults"
@@ -43,6 +59,13 @@ resource "consul_intention" "igw-allow-2" {
     action           = "allow"
   }
 
+resource "consul_intention" "fe2-allow" {
+    source_name      = "frontend-v2"
+    destination_name = "api"
+    action           = "allow"
+  }
+
+  
 resource "consul_intention" "fe-api-allow" {
     source_name      = "frontend"
     destination_name = "api"
