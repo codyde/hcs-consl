@@ -10,6 +10,18 @@ resource "consul_intention" "igw-allow" {
   action           = "allow"
 }
 
+resource "consul_intention" "fe-api-allow" {
+    source_name      = "frontend"
+    destination_name = "api"
+    action           = "allow"
+  }
+
+resource "consul_intention" "api-db-allow" {
+      source_name      = "api"
+      destination_name = "db"
+      action           = "allow"
+    }
+
 resource "consul_config_entry" "frontend" {
     name = "frontend"
     kind = "service-defaults"
