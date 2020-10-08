@@ -3,3 +3,4 @@ provider "consul" {
   datacenter = var.consuldc
   token      = var.token
 }
+
