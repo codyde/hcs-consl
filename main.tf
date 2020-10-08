@@ -4,6 +4,12 @@ provider "consul" {
   token      = var.token
 }
 
+resource "consul_intention" "igw-allow" {
+  source_name      = "ingress-gateway"
+  destination_name = "frontend"
+  action           = "allow"
+}
+
 resource "consul_config_entry" "frontend" {
     name = "frontend"
     kind = "service-defaults"
