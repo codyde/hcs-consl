@@ -20,10 +20,10 @@ resource "consul_config_entry" "fe-splitter" {
     config_json = jsonencode({
       Splits = [
     {
-     Weight  = 100
+     Weight  = 0
     },
     {
-     Weight  = 0
+     Weight  = 100
       Service = "frontend-v2"
     }
   ]
@@ -36,6 +36,12 @@ resource "consul_intention" "igw-allow" {
   destination_name = "frontend"
   action           = "allow"
 }
+
+resource "consul_intention" "igw-allow-2" {
+    source_name      = "ingress-gateway"
+    destination_name = "frontend-v2"
+    action           = "allow"
+  }
 
 resource "consul_intention" "fe-api-allow" {
     source_name      = "frontend"
